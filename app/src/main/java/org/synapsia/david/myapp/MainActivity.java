@@ -36,14 +36,7 @@ public class MainActivity extends ActionBarActivity {
         textline=(TextView)findViewById(R.id.dateTxt);
         //     date.setText("chiddiousidfsd");
 
-        btn=(Button)findViewById(R.id.datebtn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                textline.setText(new Date().toString());
-            }
-        });
 
         lon=(Button)findViewById(R.id.lightON);
         lon.setOnClickListener(new View.OnClickListener() {
