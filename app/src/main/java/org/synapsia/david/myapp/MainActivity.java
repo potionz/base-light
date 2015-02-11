@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Date;
 
 public class MainActivity extends ActionBarActivity {
 
