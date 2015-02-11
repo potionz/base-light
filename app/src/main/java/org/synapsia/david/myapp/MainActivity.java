@@ -8,15 +8,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Date;
 
 public class MainActivity extends ActionBarActivity {
 
-    TextView date;
+    TextView textline;
     Button btn;
     Button lon;
     Button loff;
+    Button ron;
+    Button roff;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
                     .commit();
         }*/
 
-        date=(TextView)findViewById(R.id.dateTxt);
+        textline=(TextView)findViewById(R.id.dateTxt);
         //     date.setText("chiddiousidfsd");
 
         btn=(Button)findViewById(R.id.datebtn);
@@ -36,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
 
-                date.setText(new Date().toString());
+                textline.setText(new Date().toString());
             }
         });
 
@@ -45,20 +50,130 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
 
-
-                Socket socket = new Socket("10.0.78.75", 50505);
-
-                OutputStream out = socket.getOutputStream();
-                PrintWriter output = new PrintWriter(out);
-
-                mStatusText.setText("Sending Data to PC");
-                output.println("Hello from Android");
-                mStatusText.setText("Data sent to PC");
-
-                socket.close();
-                mStatusText.setText("Socket closed");
+                Thread thread = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
 
 
+                        try {
+                            Socket socket = new Socket("10.0.0.136", 8008);
+
+                            OutputStream out = socket.getOutputStream();
+                            PrintWriter output = new PrintWriter(out);
+
+                            output.write("e0");
+                            output.flush();
+
+                            socket.close();
+
+
+                        } catch (Exception e) {
+                            textline.setText(e.toString());
+                        }
+
+                    }
+                });
+            thread.start();
+            }
+
+        });
+
+
+        loff=(Button)findViewById(R.id.lightOFF);
+        loff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Thread thread = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+
+
+                        try {
+                            Socket socket = new Socket("10.0.0.136", 8008);
+
+                            OutputStream out = socket.getOutputStream();
+                            PrintWriter output = new PrintWriter(out);
+
+                            output.write("d0");
+                            output.flush();
+
+                            socket.close();
+
+
+                        } catch (Exception e) {
+                            textline.setText(e.toString());
+                        }
+
+                    }
+                });
+                thread.start();
+            }
+
+        });
+
+        ron=(Button)findViewById(R.id.rightON);
+        ron.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Thread thread = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+
+
+                        try {
+                            Socket socket = new Socket("10.0.0.136", 8008);
+
+                            OutputStream out = socket.getOutputStream();
+                            PrintWriter output = new PrintWriter(out);
+
+                            output.write("e1");
+                            output.flush();
+
+                            socket.close();
+
+
+                        } catch (Exception e) {
+                            textline.setText(e.toString());
+                        }
+
+                    }
+                });
+                thread.start();
+            }
+
+        });
+
+        roff=(Button)findViewById(R.id.rightOFF);
+        roff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Thread thread = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+
+
+                        try {
+                            Socket socket = new Socket("10.0.0.136", 8008);
+
+                            OutputStream out = socket.getOutputStream();
+                            PrintWriter output = new PrintWriter(out);
+
+                            output.write("d1");
+                            output.flush();
+
+                            socket.close();
+
+
+                        } catch (Exception e) {
+                            textline.setText(e.toString());
+                        }
+
+                    }
+                });
+                thread.start();
             }
 
         });
