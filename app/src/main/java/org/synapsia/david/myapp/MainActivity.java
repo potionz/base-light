@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -38,12 +40,17 @@ public class MainActivity extends ActionBarActivity {
                 OutputStream out = socket.getOutputStream();
                 PrintWriter output = new PrintWriter(out);
 
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+               // BufferedReader fromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
                 output.write(ip[2]);
                 output.flush();
+                String teplota = in.readLine().toString();
+                in.close();
 
             //    System.out.println(hostxx.getText().toString());
                 socket.close();
-
+                tTemp.setText(teplota);
 
             } catch (Exception e) {
               //  textline.setText(e.toString());
@@ -107,7 +114,13 @@ public class MainActivity extends ActionBarActivity {
         tTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                tTemp.setText("Temperature: kokot!");
+             //   tTemp.setText("kokot");
+
+                SvetloAsyncT task = new SvetloAsyncT();
+                String ip = hostxx.getText().toString();
+                String port = portxx.getText().toString();
+                task.execute(new String[] {ip, port, "t"});
+                tTemp.invalidate();
 
             }
         });
