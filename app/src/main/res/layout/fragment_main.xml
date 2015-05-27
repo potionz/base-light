@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_row="0"
         android:layout_column="0"
-        android:layout_marginTop="49dp"
         android:textStyle="bold"
         android:textSize="24dp"
         android:layout_alignParentTop="true"
@@ -29,7 +28,8 @@
         android:id="@+id/lightON"
         android:layout_row="1"
         android:layout_column="0"
-        android:layout_alignTop="@+id/rightON"
+        android:layout_alignBaseline="@+id/rightON"
+        android:layout_alignBottom="@+id/rightON"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -40,9 +40,10 @@
         android:id="@+id/rightON"
         android:layout_row="1"
         android:layout_column="3"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/portx"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="31dp" />
 
     <Button
         android:layout_width="155dp"
@@ -113,6 +114,32 @@
         android:layout_alignBottom="@+id/portx"
         android:layout_alignLeft="@+id/hosttext"
         android:layout_alignStart="@+id/hosttext" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Both Off"
+        android:id="@+id/bothOFF"
+        android:layout_below="@+id/lightOFF"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="38dp"
+        android:layout_alignRight="@+id/rightOFF"
+        android:layout_alignEnd="@+id/rightOFF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperature"
+        android:id="@+id/textTemp"
+        android:clickable="true"
+        android:layout_below="@+id/bothOFF"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp"
+        android:layout_alignRight="@+id/dateTxt"
+        android:layout_alignEnd="@+id/dateTxt"
+        android:textSize="24dp" />
 
 
 </RelativeLayout>
