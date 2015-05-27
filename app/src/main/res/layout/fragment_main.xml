@@ -137,9 +137,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="35dp"
-        android:layout_alignRight="@+id/dateTxt"
-        android:layout_alignEnd="@+id/dateTxt"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/bothOFF"
+        android:layout_alignEnd="@+id/bothOFF" />
 
 
 </RelativeLayout>
